@@ -6,7 +6,7 @@ import java.util.Map;
 public class ResponseBuilder {
     private String statusCode;
     private String body;
-    private Map<String, String> headers = new HashMap<>();
+    private final Map<String, String> headers = new HashMap<>();
 
     public static ResponseBuilder start() {
         return new ResponseBuilder();
