@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
         ServerSocket server = new ServerSocket(8887);
         System.out.println("Listening for connection on port 8887 ....");
         while (!server.isClosed()) {
@@ -20,13 +20,14 @@ public class Main {
                 while (bufferedReader.ready() && (line = bufferedReader.readLine()) != null) {
                     r.add(line);
                 }
+                System.out.println(socket.toString());
                 if (r.size() > 0) {
                     Request req = RequestBuilder.from(r);
                     System.out.println(req);
                     String httpResponse = ResponseBuilder.start()
                             .withCode("200")
                             .withHeader("Content-Type", "text/json; charset=utf-8")
-                            .withBody("{\"YO\":\"TEST\"}")
+                            .withBody(r.toString())
                             .build().toString();
                     socket.getOutputStream().write(httpResponse.getBytes("UTF-8"));
                 } else {

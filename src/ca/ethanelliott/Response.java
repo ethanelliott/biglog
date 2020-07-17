@@ -1,6 +1,5 @@
 package ca.ethanelliott;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class Response {
@@ -19,7 +18,7 @@ public class Response {
 
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder("");
+        StringBuilder s = new StringBuilder();
         s.append(protocolVersion).append(" ").append(statusCode).append(" ").append(statusMessage);
         this.headers.forEach((s1, s2) -> s.append("\r\n").append(s1).append(": ").append(s2));
         s.append("\r\n\r\n").append(body);
